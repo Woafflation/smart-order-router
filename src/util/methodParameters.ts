@@ -318,6 +318,8 @@ export function buildSwapMethodParameters(
 ): MethodParameters {
   if (swapConfig.type == SwapType.UNIVERSAL_ROUTER) {
     return {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       ...UniversalRouter.swapCallParameters(trade, swapConfig),
       to: UNIVERSAL_ROUTER_ADDRESS(swapConfig.version, chainId),
     };

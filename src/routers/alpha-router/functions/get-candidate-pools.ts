@@ -1,22 +1,17 @@
 import { Protocol } from '@uniswap/router-sdk';
 import { ChainId, Currency, Token, TradeType } from '@uniswap/sdk-core';
+import { isNativeCurrency } from '@uniswap/universal-router-sdk';
 import { FeeAmount } from '@uniswap/v3-sdk';
 import _ from 'lodash';
 
-import { isNativeCurrency } from '@uniswap/universal-router-sdk';
 import {
-  DAI_OPTIMISM_SEPOLIA,
   ITokenListProvider,
   IV2SubgraphProvider,
   IV4PoolProvider,
   IV4SubgraphProvider,
-  USDC_ARBITRUM_SEPOLIA,
-  USDC_OPTIMISM_SEPOLIA,
-  USDT_OPTIMISM_SEPOLIA,
   V2SubgraphPool,
   V4PoolAccessor,
   V4SubgraphPool,
-  WBTC_OPTIMISM_SEPOLIA,
 } from '../../../providers';
 import {
   CELO,
@@ -32,6 +27,7 @@ import {
   DAI_MOONBEAM,
   DAI_OPTIMISM,
   DAI_OPTIMISM_GOERLI,
+  DAI_OPTIMISM_SEPOLIA,
   DAI_POLYGON_MUMBAI,
   DAI_SEPOLIA,
   DAI_UNICHAIN,
@@ -40,6 +36,7 @@ import {
   USDB_BLAST,
   USDC_ARBITRUM,
   USDC_ARBITRUM_GOERLI,
+  USDC_ARBITRUM_SEPOLIA,
   USDC_AVAX,
   USDC_BASE,
   USDC_BASE_SEPOLIA,
@@ -49,6 +46,7 @@ import {
   USDC_MOONBEAM,
   USDC_OPTIMISM,
   USDC_OPTIMISM_GOERLI,
+  USDC_OPTIMISM_SEPOLIA,
   USDC_POLYGON,
   USDC_SEPOLIA,
   USDC_SONEIUM,
@@ -59,12 +57,14 @@ import {
   USDT_MONAD_TESTNET,
   USDT_OPTIMISM,
   USDT_OPTIMISM_GOERLI,
+  USDT_OPTIMISM_SEPOLIA,
   WBTC_ARBITRUM,
   WBTC_GNOSIS,
   WBTC_MAINNET,
   WBTC_MOONBEAM,
   WBTC_OPTIMISM,
   WBTC_OPTIMISM_GOERLI,
+  WBTC_OPTIMISM_SEPOLIA,
   WGLMR_MOONBEAM,
   WMATIC_POLYGON,
   WMATIC_POLYGON_MUMBAI,
@@ -257,10 +257,7 @@ const baseTokensByChain: { [chainId in ChainId]?: Token[] } = {
     DAI_UNICHAIN,
     USDC_UNICHAIN,
   ],
-  [ChainId.SONEIUM]: [
-    USDC_SONEIUM,
-    WRAPPED_NATIVE_CURRENCY[ChainId.SONEIUM]!,
-  ],
+  [ChainId.SONEIUM]: [USDC_SONEIUM, WRAPPED_NATIVE_CURRENCY[ChainId.SONEIUM]!],
 };
 
 class SubcategorySelectionPools<SubgraphPool> {
